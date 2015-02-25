@@ -17,7 +17,7 @@
 #endif
 
 // For some reason, LuaJIT 64bits doesn't support lua_newstate()
-#if defined(LUA_LJDIR) && (defined(__x86_64__) || defined(_M_X64))
+#if defined(LUA_LJDIR) && (defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(_M_AMD64))
 #define PROPAGATE_ALLOCF 0
 #else // LuaJIT x64
 #define PROPAGATE_ALLOCF 1
