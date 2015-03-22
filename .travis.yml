@@ -1,0 +1,17 @@
+language: c
+
+env:
+  - LUA="Lua 5.1"
+  - LUA="Lua 5.2"
+  - LUA="Lua 5.3"
+  - LUA="LuaJIT 2.0"
+
+before_install:
+  - bash .travis_setup.sh
+
+install:
+  - sudo luarocks make lanes-3.9.6-1.rockspec
+
+script:
+  - lua -e 'require "lanes".configure()'
+  - cd tests && for f in errhangtest.lua irayo_recursive.lua irayo_closure.lua basic.lua fifo.lua keeper.lua timer.lua atomic.lua cyclic.lua objects.lua fibonacci.lua recursive.lua func_is_string.lua atexit.lua linda_perf.lua rupval.lua package.lua pingpong.lua; do lua $f; done
